@@ -1,7 +1,12 @@
 {
-  "name": "codefight-server",
+  "name": "codefight",
   "version": "0.1.0",
   "dependencies": {
-    "codefight-common": "*"
+    "gl-matrix": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-watch": "~0.5.3"
   }
 }
