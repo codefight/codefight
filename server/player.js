@@ -7,7 +7,4 @@ function Player(game, name) {
 }
 
 Player.prototype = {
-  command: function(command) {
-    this.game.command(this, command);
-  }
 };

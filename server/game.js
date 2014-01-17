@@ -1,8 +1,10 @@
 var Player = require('./player');
 var World = require('./world');
 
+module.exports = Game;
+
 function Game(players, map) {
-  this.commands = [];
+  this.units = [];
 
   // Create the world
   this.world = new World(map);
@@ -16,12 +18,6 @@ function Game(players, map) {
 }
 
 Game.prototype = {
-  command: function(player, command) {
-    this.commands.push({
-      player: player,
-      execute: command
-    });
-  },
   update: function() {
     var i, n;
 
@@ -29,12 +25,5 @@ Game.prototype = {
     for (i = 0, n = this.units.length; i < n; i++) {
       this.units[i].update();
     }
-
-    // Process commands
-    for (i = 0, n = this.commands.length; i < n; i++) {
-      this.commands[i].execute(this);
-    }
-
-    this.commands.length = 0;
   }
 };

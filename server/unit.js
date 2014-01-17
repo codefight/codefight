@@ -1,24 +1,16 @@
-var commands = require('./commands');
-
 module.exports = Unit;
 
-function Unit(owner, type) {
+function Unit(game, owner, chassis, components) {
+  this.game = game;
   this.owner = owner;
-  this.type = type;
-  this.pendingCommand = null;
+  this.chassis = chassis;
+  this.components = components;
 }
 
 Unit.prototype = {
-  build: function(unitType) {
-    this.pendingCommand = commands.move(this.unit, unitType);
-  },
-  move: function(direction) {
-    this.pendingCommand = commands.move(this.unit, direction);
-  },
   update: function() {
-    if (this.pendingCommand) {
-      this.world.command(this.owner, this.pendingCommand);
-      this.pendingCommand = null;
+    for (var i = 0, n = components.length; i < n; i++) {
+      this.components[i].update();
     }
   }
 };

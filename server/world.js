@@ -7,7 +7,10 @@ function World(width, height) {
 }
 
 World.prototype = {
+  contains: function(x, y) {
+    return x >= 0 && x < this.width && y >= 0 && y < this.height;
+  },
   get: function(x, y) {
-    return this.map[y * this.height + x];
+    return this.contains(x, y) ? this.map[y * this.height + x] : undefined;
   }
 };
