@@ -30,7 +30,8 @@ module.exports = {
 var requiredFields = {
   cost:  0,
   slots: 0,
-  delay: 0
+  delay: 0,
+  range: 0
 };
 
 for (var comp in modules.exports) {

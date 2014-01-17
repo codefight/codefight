@@ -1,4 +1,5 @@
 var util = require('util');
+var vec2 = require('vec2');
 
 module.exports = Component;
 
@@ -34,6 +35,19 @@ Component.prototype = {
     if (this.cooldown < this.type.delay) {
       this.cooldown = this.type.delay;
     }
+  },
+  assertInactive: function() {
+    if (this.cooldown > 0) {
+      throw "This component is already active.";
+    }
+  },
+  assertWithinRange: function(position) {
+    if (!checkWithinRange(position)) {
+      throw "This target is out of range.".
+    }
+  },
+  checkWithinRange: function(position) {
+    return vec2.distance(this.unit.position, position) <= this.type.range;
   },
   update: function() {
     if (this.cooldown > 0) {
