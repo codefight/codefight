@@ -14,7 +14,7 @@ Component.inherits = function(proto) {
 
   var ctor = function(unit, type) {
     Component.call(this, unit, type);
-  }
+  };
 
   util.inherits(ctor, Component);
 
@@ -43,7 +43,7 @@ Component.prototype = {
   },
   assertWithinRange: function(position) {
     if (!checkWithinRange(position)) {
-      throw "This target is out of range.".
+      throw "This target is out of range.";
     }
   },
   checkWithinRange: function(position) {

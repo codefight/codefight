@@ -1,18 +1,23 @@
 module.exports = {
   // Miscellaneous
-  BUILDER:  {cost: 40, slots: 4},
-  JUMPER:   {cost: 40, slots: 4},
-  RECYCLER: {cost: 70, slots: 15},
+  BUILDER:   {cost: 40, slots: 4},
+  JUMPER:    {cost: 40, slots: 4},
+  RECYCLER:  {cost: 70, slots: 4},
+  TRANSPORT: {cost: 50, slots: 4},
 
   // Armors
-  SHIELD:   {cost: 10, slots: 1, reduction: 10, hp: 0,  ignore: 0},
-  PLATING:  {cost: 10, slots: 1, reduction: 0,  hp: 10, ignore: 0},
-  HARDENED: {cost: 10, slots: 2, reduction: 0,  hp: 0,  ignore: 10},
+  SHIELD:   {cost: 10, slots: 1, power: 10},
+  PLATING:  {cost: 10, slots: 1, power: 10},
+  HARDENED: {cost: 10, slots: 2, power: 10},
+  REGEN:    {cost: 10, slots: 2, power: 10},
+  PLASMA:   {cost: 10, slots: 2, power: 0},
 
   // Weapons
   BLADE:   {cost: 10, slots: 2, delay: 1, range: 4,  damage: 10},
   BLASTER: {cost: 10, slots: 1, delay: 1, range: 10, damage: 10},
   SMG:     {cost: 10, slots: 2, delay: 1, range: 10, damage: 10},
+  SNIPER:  {cost: 10, slots: 2, delay: 1, range: 10, damage: 10},
+  CANNON:  {cost: 10, slots: 5, delay: 1, range: 10, damage: 10},
   RAILGUN: {cost: 10, slots: 5, delay: 1, range: 10, damage: 10},
   MEDIC:   {cost: 10, slots: 4, delay: 1, range: 10, damage: -10},
 

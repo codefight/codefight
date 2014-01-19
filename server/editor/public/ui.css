@@ -1,0 +1,40 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  background: #232830;
+}
+
+#editor {
+  position: absolute;
+  left: 200px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #2B303A;
+}
+
+#toolbar {
+  background: #1C1F26;
+}
+
+#toolbar button {
+  padding: 6px 18px;
+  margin: 8px;
+  background: transparent;
+  border: 0;
+  color: #94B5B4;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#toolbar button:hover {
+  background: #232830;
+}

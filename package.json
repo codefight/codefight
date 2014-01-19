@@ -2,7 +2,8 @@
   "name": "codefight",
   "version": "0.1.0",
   "dependencies": {
-    "gl-matrix": "*"
+    "express": "~3.4.8",
+    "jade": "~1.1.5"
   },
   "devDependencies": {
     "grunt": "~0.4.2",

@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 module.exports = World;
 
 function World(width, height) {
@@ -5,6 +7,10 @@ function World(width, height) {
   this.height = height;
   this.map = new Array(width * height);
 }
+
+World.fromJSON = function(map) {
+
+};
 
 World.prototype = {
   contains: function(x, y) {

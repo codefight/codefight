@@ -1,0 +1,13 @@
+doctype html
+html(lang="en")
+  head
+    link(rel="stylesheet", href="ui.css")
+  body
+    section#sidebar
+      include partials/sidebar
+    section#editor
+      section#toolbar
+        include partials/toolbar
+      section#canvas
+        include partials/canvas
+    script(src="editor.js")
