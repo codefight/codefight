@@ -120,16 +120,36 @@ Sidebar.prototype = {
 
 function Canvas(editor, elem) {
   this.editor = editor;
-  this.elem = elem;
-  this.ctx = this.elem.getContext('2d');
-  console.log(this.elem.width, this.elem.height);
+  this.tiles = elem.querySelector('canvas#tiles');
+  this.grid = elem.querySelector('canvas#grid');
+  this.tilesCtx = this.tiles.getContext('2d');
+  this.gridCtx = this.grid.getContext('2d');
 }
+
+Canvas.TILE_SIZE = 10;
 
 Canvas.prototype = {
   clear: function() {
-    this.ctx.clearRect(0, 0, this.elem.width, this.elem.height);
+    this.tilesCtx.clearRect(0, 0, this.tiles.width, this.tiles.height);
+    this.gridCtx.clearRect(0, 0, this.grid.width, this.grid.height);
+  },
+  resize: function(width, height) {
+    this.tiles.width = this.grid.width = width * Canvas.TILE_SIZE;
+    this.tiles.height = this.grid.height = height * Canvas.TILE_SIZE;
+
+    // Redraw grid
+    for (var x = width; x--;) {
+      this.gridCtx.moveTo(x * Canvas.TILE_SIZE, 0);
+      this.gridCtx.lineTo(x * Canvas.TILE_SIZE, height * Canvas.TILE_SIZE);
+    }
+
+    for (var y = height; y--;) {
+      this.gridCtx.moveTo(x * Canvas.TILE_SIZE, 0);
+      this.gridCtx.lineTo(x * Canvas.TILE_SIZE, height * Canvas.TILE_SIZE);
+    }
   },
   load: function(map) {
+    this.resize(map.width || 30, map.height || 30);
     this.clear();
   }
 };
@@ -137,7 +157,7 @@ Canvas.prototype = {
 window.onload = function() {
   var editor = new Editor(
     document.querySelector('#sidebar ul'),
-    document.querySelector('#canvas canvas')
+    document.querySelector('#canvas')
   );
 
   editor.refresh();
