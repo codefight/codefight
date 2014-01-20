@@ -121,7 +121,8 @@ Sidebar.prototype = {
 function Canvas(editor, elem) {
   this.editor = editor;
   this.elem = elem;
-  this.ctx = this.elem.getContext("2d");
+  this.ctx = this.elem.getContext('2d');
+  console.log(this.elem.width, this.elem.height);
 }
 
 Canvas.prototype = {
@@ -136,7 +137,7 @@ Canvas.prototype = {
 window.onload = function() {
   var editor = new Editor(
     document.querySelector('#sidebar ul'),
-    document.querySelector('#canvas canvas'),
+    document.querySelector('#canvas canvas')
   );
 
   editor.refresh();
