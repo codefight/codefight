@@ -1,34 +1,60 @@
 var fs = require('fs');
 var path = require('path');
 
-var mapdir = path.join(__dirname, '..', '..', 'content', 'maps');
+var mapdir = path.normalize(__dirname + '/../../content/maps');
 
 module.exports = {
   list: function() {
-    return fs.readdirSync(mapdir).filter(function(name) {
-      if (name === '.' && name === '..') {
-        return false;
-      }
+    return function(done) {
+      var found = fs.existsSync(mapdir);
+      if (found) {
+        fs.readdir(mapdir, function(err, files) {
+          if (err) return done(err);
 
-      if (path.extname(name) !== '.json') {
-        return false;
-      }
+          files = files.filter(function(name) {
+            return path.extname(name) === '.json';
+          }).map(function(name) {
+            return {
+              filename: path.basename(name, '.json')
+            };
+          });
 
-      return true;
-    }).map(function(name) {
-      return path.basename(name, '.json');
-    });
+          done(null, files);
+        });
+      } else {
+        done(null, []);
+      }
+    };
   },
   read: function(name) {
-    var file = path.join(mapdir, name + '.json');
-    if (fs.existsSync(file)) {
-      return fs.readFileSync(file);
-    }
-
-    return null;
+    var file = mapdir + '/' + name + '.json';
+    return function(done) {
+      var found = fs.existsSync(file);
+      if (found) {
+        fs.readFile(file, function(err, content) {
+          if (err) return done(err);
+          try {
+            content = JSON.parse(content);
+            content.filename = name;
+          } catch (err) {
+            return done(err);
+          }
+          done(null, content);
+        });
+      } else {
+        done(new Error("Not found"));
+      }
+    };
   },
   write: function(name, content) {
-    var file = path.join(mapdir, name + '.json')
-    fs.writeFileSync(file, content);
+    return function(done) {
+      try {
+        delete content.filename;
+        content = JSON.stringify(content);
+      } catch (err) {
+        return done(err);
+      }
+      fs.writeFile(mapdir + '/' + name + '.json', content, done);
+    };
   }
 };

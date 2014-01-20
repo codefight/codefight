@@ -1,34 +1,39 @@
-var express = require('express');
 var maps = require('./maps');
+var parse = require('co-body');
+var views = require('co-views');
+var route = require('koa-route');
+var serve = require('koa-static');
+var koa = require('koa');
+var app = module.exports = koa();
 
-var app = module.exports = express();
+// View engine
+var render = views(__dirname + '/views', {ext: 'jade'});
 
-app.use(express.static(__dirname + '/public'));
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+// Static resources
+app.use(serve(__dirname + '/public'));
 
-app.get('/', function(req, res) {
-  res.render('index', {
-    maps: maps.list()
-  });
-});
+// Routes
+app.use(route.get('/', index));
+app.use(route.get('/maps', list));
+app.use(route.get('/maps/:name', read));
+app.use(route.post('/maps/:name', write));
 
-app.get('/map/:file', function(req, res) {
-  var map = maps.read(req.params.file);
-  if (map) {
-    res.send(200, map);
-  } else {
-    res.send(404);
-  }
-});
+function *index() {
+  this.body = yield render('index');
+}
 
-app.post('/map/:file', function(req, res) {
-  var file = req.params.file;
-  var content = req.body.map;
+function *list() {
+  this.body = yield maps.list();
+}
 
-  maps.write(file, content);
-  res.send(200);
-});
+function *read(name) {
+  this.body = yield maps.read(name);
+}
+
+function *write(name) {
+  var content = yield parse(this);
+  yield maps.write(name, content);
+}
 
 if (!module.parent) {
   app.listen(3000);

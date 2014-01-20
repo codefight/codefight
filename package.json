@@ -2,8 +2,12 @@
   "name": "codefight",
   "version": "0.1.0",
   "dependencies": {
-    "express": "~3.4.8",
-    "jade": "~1.1.5"
+    "co-body": "~0.0.1",
+    "co-views": "~0.1.0",
+    "jade": "~1.1.5",
+    "koa": "~0.3.0",
+    "koa-route": "~1.0.2",
+    "koa-static": "~1.4.2"
   },
   "devDependencies": {
     "grunt": "~0.4.2",

@@ -8,8 +8,8 @@ html, body {
   left: 0;
   top: 0;
   bottom: 0;
-  width: 200px;
-  background: #232830;
+  width: 210px;
+  background: #222830;
 }
 
 #editor {
@@ -18,11 +18,11 @@ html, body {
   right: 0;
   top: 0;
   bottom: 0;
-  background: #2B303A;
+  background: #2A303B;
 }
 
 #toolbar {
-  background: #1C1F26;
+  background: #1B1E26;
 }
 
 #toolbar button {
@@ -36,5 +36,5 @@ html, body {
 }
 
 #toolbar button:hover {
-  background: #232830;
+  background: #222830;
 }
