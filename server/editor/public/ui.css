@@ -3,6 +3,10 @@ html, body {
   padding: 0;
 }
 
+body, input, select, button, textarea {
+  font-family: "Lucida Grande", Tahoma, sans-serif;
+}
+
 #sidebar {
   position: absolute;
   left: 0;
@@ -22,6 +26,7 @@ html, body {
 }
 
 #toolbar {
+  display: none;
   background: #1B1E26;
 }
 
@@ -40,6 +45,7 @@ html, body {
 }
 
 #canvas {
+  display: none;
   position: relative;
   margin: 20px;
 }
@@ -48,5 +54,34 @@ html, body {
   position: absolute;
   top: 0;
   left: 0;
-  border: 1px solid #222830;
+  border: 2px solid #1B1E26;
+}
+
+#overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, .7);
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  top: 200px;
+  width: 300px;
+  left: 50%;
+  margin-left: -150px;
+  background: #2A303B;
+}
+
+.modal .group {
+  width: 100%;
+}
+
+.modal .group label, .modal .group input {
+  display: inline-block;
+  width: 50%;
 }
